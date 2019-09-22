@@ -1,4 +1,4 @@
-package com.leon.leetcodeleon.q0;
+package com.leon.leetcodeleon.q0.q01;
 
 import com.alibaba.fastjson.JSONObject;
 
