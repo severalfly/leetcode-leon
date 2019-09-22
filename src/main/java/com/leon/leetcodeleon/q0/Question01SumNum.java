@@ -2,43 +2,36 @@ package com.leon.leetcodeleon.q0;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Question01SumNum
 {
 	public int[] twoSum(int[] nums, int target)
 	{
-		if (nums == null)
+		Map<Integer, Integer> map = new HashMap<>();
+		int k = 0;
+		for (int num : nums)
 		{
-			return null;
+			map.put(target - num, k++);
 		}
-		Arrays.sort(nums);
-		int i = 0;
-		int j = nums.length - 1;
-		while (j > i)
+
+		for (int i = 0; i < nums.length; i++)
 		{
-			int sum = nums[i] + nums[j];
-			if (sum == target)
+			if (map.containsKey(nums[i]) && i != map.get(nums[i]))
 			{
-				break;
-			}
-			else if (sum > target)
-			{
-				j--;
-			}
-			else
-			{
-				i++;
+				return new int[] { i, map.get(nums[i]) };
 			}
 		}
-		return new int[] { i, j };
+
+		return null;
 	}
 
 	public static void main(String[] args)
 	{
 		Question01SumNum q = new Question01SumNum();
-		int[] nums = new int[] { 2, 7, 11, 15 };
-		int target = 9;
+		int[] nums = new int[] { 3, 2, 4 };
+		int target = 6;
 		int[] ints = q.twoSum(nums, target);
 		System.out.println(JSONObject.toJSONString(ints));
 	}
