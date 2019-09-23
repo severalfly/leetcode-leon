@@ -15,65 +15,21 @@ public class LengthOfLongestString
 		{
 			return 0;
 		}
-		List<Set<Character>> list = new ArrayList<>();
-		Set<Character> sb = new HashSet<>();
-		sb.add(s.charAt(0));
-		list.add(sb);
-		for (int i = 1; i < s.length(); i++)
+		int size, i = 0, j, k, max = 0;
+		size = s.length();
+		for (j = 0; j < size; j++)
 		{
-			if (!sb.contains(s.charAt(i)))
-			{
-				sb.add(s.charAt(i));
-				//				continue;
-			}
-			else
-			{
-				list.add(sb);
-				sb = new HashSet<>();
-				sb.add(s.charAt(i));
-			}
+			for (k = i; k < j; k++)
+				if (s.charAt(k) == s.charAt(j))
+				{
+					i = k + 1;
+					break;
+				}
+			if (j - i + 1 > max)
+				max = j - i + 1;
 		}
-		list.add(sb);
-
-		int max1 = 0;
-		for (Set<Character> stringBuffer : list)
-		{
-			if (stringBuffer.size() > max1)
-			{
-				max1 = stringBuffer.size();
-			}
-		}
-
-		list = new ArrayList<>();
-		sb = new HashSet<>();
-		sb.add(s.charAt(s.length() - 1));
-		list.add(sb);
-		for (int i = s.length() - 2; i > 0; i--)
-		{
-			if (!sb.contains(s.charAt(i)))
-			{
-				sb.add(s.charAt(i));
-				//				continue;
-			}
-			else
-			{
-				list.add(sb);
-				sb = new HashSet<>();
-				sb.add(s.charAt(i));
-			}
-		}
-		list.add(sb);
-
-		int max2 = 0;
-		for (Set<Character> stringBuffer : list)
-		{
-			if (stringBuffer.size() > max2)
-			{
-				max2 = stringBuffer.size();
-			}
-		}
-
-		return Math.max(max1, max2);
+		return max;
+		//		return Math.max(max1, max2);
 	}
 
 	@Test
