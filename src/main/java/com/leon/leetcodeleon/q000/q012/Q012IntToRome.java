@@ -1,8 +1,7 @@
-package com.leon.leetcodeleon.q00.q012;
+package com.leon.leetcodeleon.q000.q012;
 
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

@@ -1,6 +1,5 @@
-package com.leon.leetcodeleon.q00.q011;
+package com.leon.leetcodeleon.q000.q011;
 
-import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
 public class Q011MaxArea
