@@ -1,9 +1,8 @@
-package com.leon.leetcodeleon.q000.q024;
+package com.leon.leetcodeleon.q000.q025;
 
-import com.leon.leetcodeleon.q000.q023.Q023MergeKLists;
 import org.junit.Test;
 
-public class Q024SwapPairs
+public class Q025ReverseKGroup
 {
 
 	@Test
@@ -20,6 +19,14 @@ public class Q024SwapPairs
 		m.next = new ListNode(5);
 		m = m.next;
 		m.next = new ListNode(6);
+		//		m = m.next;
+		//		m.next = new ListNode(7);
+		//		m = m.next;
+		//		m.next = new ListNode(8);
+		//		m = m.next;
+		//		m.next = new ListNode(9);
+		//		m = m.next;
+		//		m.next = new ListNode(10);
 		printList(l1);
 
 		ListNode l2 = new ListNode(1);
@@ -32,43 +39,57 @@ public class Q024SwapPairs
 		ListNode l3 = new ListNode(2);
 		printList(l3);
 
-		printList(swapPairs(l1));
-		printList(swapPairs(l2));
-		printList(swapPairs(l3));
+		//		printList(reverseKGroup(l1, 2));
+		printList(reverseKGroup(l1, 3));
+		printList(reverseKGroup(l3, 2));
 	}
 
-	public ListNode swapPairs(ListNode head)
+	public ListNode reverseKGroup(ListNode head, int k)
 	{
-		//		ListNode tmp = new ListNode(0);
-		//		tmp.next = head;
-		ListNode res = head;
-		ListNode first = null;
-		ListNode second = null;
-		ListNode per = null;
+		if (head == null)
+		{
+			return null;
+		}
+		ListNode tmp = new ListNode(0);
+		tmp.next = head;
+		ListNode first = head;
+		ListNode per = tmp;
 		while (head != null)
 		{
-			first = head;
-			if (head.next == null)
+
+			ListNode end = first;
+			int i = k;
+			while (i > 1 && end !=null &&  end.next != null)
+			{
+				end = end.next;
+				i--;
+			}
+			if (i > 1 || end == null)
 			{
 				break;
 			}
-			second = head.next;
-			if (per != null)
+			ListNode ne = end.next;
+			i = k;
+			while (i > 1)
 			{
-				per.next = second;
-			}
-			else
-			{
-				res = second;
+				per.next = first.next;
+				first.next = end.next;
+				end.next = first;
+				first = per.next;
+				i--;
 			}
 
-			first.next = second.next;
-			second.next = first;
-			head = head.next;
-			per = first;
+			first = ne;
+
+			i = k;
+			while (i > 0)
+			{
+				per = per.next;
+				i--;
+			}
 
 		}
-		return res;
+		return tmp.next;
 	}
 
 	private class ListNode
