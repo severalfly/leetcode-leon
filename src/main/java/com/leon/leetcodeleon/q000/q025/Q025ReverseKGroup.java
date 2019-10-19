@@ -1,7 +1,6 @@
 package com.leon.leetcodeleon.q000.q024;
 
 import com.leon.leetcodeleon.q000.q023.Q023MergeKLists;
-import com.leon.leetcodeleon.q000.q025.Q025ReverseKGroup;
 import org.junit.Test;
 
 public class Q024SwapPairs
@@ -33,9 +32,9 @@ public class Q024SwapPairs
 		ListNode l3 = new ListNode(2);
 		printList(l3);
 
-		printList(swapPairsV2(l1));
-		printList(swapPairsV2(l2));
-		printList(swapPairsV2(l3));
+		printList(swapPairs(l1));
+		printList(swapPairs(l2));
+		printList(swapPairs(l3));
 	}
 
 	public ListNode swapPairs(ListNode head)
@@ -70,32 +69,6 @@ public class Q024SwapPairs
 
 		}
 		return res;
-	}
-
-	public ListNode swapPairsV2(ListNode head)
-	{
-		ListNode tmp = new ListNode(0);
-		tmp.next = head;
-		ListNode first = null;
-		ListNode second = null;
-		ListNode per = tmp;
-		while (head != null)
-		{
-			first = head;
-			if (head.next == null)
-			{
-				break;
-			}
-			second = head.next;
-			per.next = second;
-			first.next = second.next;
-			second.next = first;
-
-			head = head.next;
-			per = first;
-
-		}
-		return tmp.next;
 	}
 
 	private class ListNode
