@@ -1,4 +1,7 @@
 leetcode 题目解题思路与代码
 
+包名对应着题目序号，里面有对应测试方法，可以直接运行测试方法获得结果
 
-<img src="https://note.youdao.com/yws/api/personal/file/6b6a83dc6974d660fbbce4b070197729?method=download&shareKey=c9446fff59488e1cdf69fc65b0190b1c" width = "250" height = "400" alt="图片名称" align=center />
+扫码对我赞助
+
+<img src="./zhifubao.jpeg" width = "250" height = "400" alt="图片名称" align=center />
