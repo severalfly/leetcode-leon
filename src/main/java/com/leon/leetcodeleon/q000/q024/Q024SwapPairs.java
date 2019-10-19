@@ -32,18 +32,19 @@ public class Q024SwapPairs
 		ListNode l3 = new ListNode(2);
 		printList(l3);
 
-		ListNode listNode = swapPairs(l3);
-		printList(listNode);
+		printList(swapPairs(l1));
+		printList(swapPairs(l2));
+		printList(swapPairs(l3));
 	}
 
 	public ListNode swapPairs(ListNode head)
 	{
-		ListNode tmp = new ListNode(0);
-		tmp.next = head;
-		ListNode res = tmp;
+		//		ListNode tmp = new ListNode(0);
+		//		tmp.next = head;
+		ListNode res = head;
 		ListNode first = null;
 		ListNode second = null;
-		ListNode per = tmp;
+		ListNode per = null;
 		while (head != null)
 		{
 			first = head;
@@ -52,17 +53,22 @@ public class Q024SwapPairs
 				break;
 			}
 			second = head.next;
-			per.next = second;
+			if (per != null)
+			{
+				per.next = second;
+			}
+			else
+			{
+				res = second;
+			}
 
 			first.next = second.next;
 			second.next = first;
 			head = head.next;
-			//			head = head.next;
 			per = first;
-			//			per.next = second;
 
 		}
-		return res.next;
+		return res;
 	}
 
 	private class ListNode
