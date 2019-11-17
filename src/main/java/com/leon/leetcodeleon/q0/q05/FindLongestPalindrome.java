@@ -18,8 +18,8 @@ public class FindLongestPalindrome extends BaseTest
 		//		assert s.equalsIgnoreCase("bab") || s.equalsIgnoreCase("aba");
 		//		assert longestPalindrome(str2).equalsIgnoreCase("bb");
 		//		assert longestPalindromeV2("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa").equalsIgnoreCase("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		assert longestPalindromeV2(str2).equalsIgnoreCase("bb");
-		assert longestPalindromeV2("asdfghjkwtcivic").equalsIgnoreCase("civic");
+		assert longestPalindrome("cbbeed").equalsIgnoreCase("bb");
+		assert longestPalindrome("civic").equalsIgnoreCase("civic");
 	}
 
 	/**
@@ -31,21 +31,23 @@ public class FindLongestPalindrome extends BaseTest
 		{
 			return s;
 		}
-		s = expandStr(s);
+		//		s = expandStr(s);
 		int len = s.length();
 		int[][] pal = new int[len][len + 1];
 		for (int i = 0; i < len; i++)
 		{
 			//			for (int j = 0; j < len; j++)
 			pal[i][1] = 1;
+			pal[i][0] = 1;
 		}
 		int maxLen = 0;
 		int lastJ = -1;
 		for (int l = 2; l <= len; l++)
 		{
+			int carry = l % 2 == 0 ? 1 : 0;
 			for (int j = l / 2; j < len - l / 2; j++)
 			{
-				if (pal[j][l - 1] == 1 && s.charAt(j - l / 2) == s.charAt(j + l / 2))
+				if (pal[j][l - 2] == 1 && s.charAt(j - l / 2) == s.charAt(j + l / 2 - carry))
 				{
 					pal[j][l] = 1;
 					if (l > maxLen)
@@ -60,17 +62,34 @@ public class FindLongestPalindrome extends BaseTest
 				}
 			}
 		}
-//		ObjectUtils.print(pal);
-		String substring = s.substring(lastJ - maxLen / 2, lastJ + maxLen / 2 + 1);
+		//		ObjectUtils.print(pal);
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < substring.length(); i++)
+		if (lastJ >= 0)
 		{
-			if (substring.charAt(i) != '#')
+			if (maxLen % 2 == 1)
 			{
-				sb.append(substring.charAt(i));
+
+				String substring = s.substring(lastJ - maxLen / 2, lastJ + maxLen / 2 + 1);
+				return substring;
 			}
+			else
+			{
+
+			}
+
+			//			for (int i = 0; i < substring.length(); i++)
+			//			{
+			//				if (substring.charAt(i) != '#')
+			//				{
+			//					sb.append(substring.charAt(i));
+			//				}
+			//			}
 		}
-//		System.out.println(sb.toString());
+		else
+		{
+			sb.append(s.charAt(0));
+		}
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
 
