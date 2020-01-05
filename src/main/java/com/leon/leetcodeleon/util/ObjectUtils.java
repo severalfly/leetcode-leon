@@ -1,5 +1,7 @@
 package com.leon.leetcodeleon.util;
 
+import com.leon.leetcodeleon.common.ListNode;
+
 public class ObjectUtils
 {
 	public static void print(boolean[][] array)
@@ -26,5 +28,17 @@ public class ObjectUtils
 			}
 			System.out.println();
 		}
+	}
+
+	public static void printListNode(ListNode node)
+	{
+		ListNode listNode = node;
+		while (listNode != null)
+		{
+			System.out.print(listNode.val);
+			System.out.print(' ');
+			listNode = listNode.next;
+		}
+		System.out.println();
 	}
 }
