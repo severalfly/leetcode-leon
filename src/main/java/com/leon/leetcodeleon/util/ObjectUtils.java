@@ -2,6 +2,8 @@ package com.leon.leetcodeleon.util;
 
 import com.leon.leetcodeleon.common.ListNode;
 
+import java.util.List;
+
 public class ObjectUtils
 {
 	public static void print(boolean[][] array)
@@ -38,6 +40,16 @@ public class ObjectUtils
 			System.out.print(listNode.val);
 			System.out.print(' ');
 			listNode = listNode.next;
+		}
+		System.out.println();
+	}
+
+	public static void print(List<Integer> grayCode)
+	{
+		for (Integer integer : grayCode)
+		{
+			System.out.print(integer);
+			System.out.print(' ');
 		}
 		System.out.println();
 	}
