@@ -10,17 +10,23 @@ public class Q092ReverseBetween
 	@Test
 	public void test()
 	{
-		ObjectUtils.printListNode(reverseBetween(ListNodeUtils.generateList(new int[] { 1, 2, 3, 4, 5 }), 2, 4));
+		ObjectUtils.printListNode(reverseBetween(ListNodeUtils.generateList(new int[] { 1, 2, 3, 4, 5, 6 }), 3, 6));
+		ObjectUtils.printListNode(reverseBetween(ListNodeUtils.generateList(new int[] { 1, 2, 3, 4, 5, 6 }), 1, 6));
 		ObjectUtils.printListNode(reverseBetween(ListNodeUtils.generateList(new int[] { 1 }), 1, 1));
 	}
 
 	public ListNode reverseBetween(ListNode head, int m, int n)
 	{
+
 		if (head == null)
 		{
 			return head;
 		}
-		ListNode h = head;
+		ListNode p = new ListNode(0);
+		p.next = head;
+		ListNode h = p;
+		m++;
+		n++;
 		while (m - 2 > 0)
 		{
 			h = h.next;
@@ -48,6 +54,6 @@ public class Q092ReverseBetween
 			n--;
 		}
 
-		return head;
+		return p.next;
 	}
 }
