@@ -84,14 +84,14 @@ public class TreeNodeUtils
 		return res;
 	}
 
-	public void printInOrder(TreeNode root)
+	public static void printInOrder(TreeNode root)
 	{
 		List<Integer> res = new ArrayList<>();
 		helper(root, res);
 		ObjectUtils.print(res);
 	}
 
-	public void helper(TreeNode root, List<Integer> res)
+	private static void helper(TreeNode root, List<Integer> res)
 	{
 		if (root != null)
 		{
