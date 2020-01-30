@@ -42,9 +42,10 @@ public class Q120MinimumTotal
 
 		for (int i = rows - 2; i >= 0; i--)
 		{
-			for (int j = 0; j < triangle.get(i).size(); j++)
+			List<Integer> list = triangle.get(i);
+			for (int j = 0; j < list.size(); j++)
 			{
-				tmp[j] = triangle.get(i).get(j) + Math.min(tmp[j], tmp[j + 1]);
+				tmp[j] = list.get(j) + Math.min(tmp[j], tmp[j + 1]);
 			}
 		}
 
