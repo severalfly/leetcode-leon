@@ -13,6 +13,20 @@ public class Q045JumpSecondVersion extends BaseTest
 
 	public int jump(int[] nums)
 	{
-		return 0;
+		int last = nums.length - 1;
+		int steps = 0;
+		while (last > 0)
+		{
+			for (int i = 0; i < last; i++)
+			{
+				if (nums[i] >= last - i)
+				{
+					last = i;
+					steps++;
+					break;
+				}
+			}
+		}
+		return steps;
 	}
 }
