@@ -106,6 +106,7 @@ public class Q079Exist extends BaseTest
 	public void testDfs()
 	{
 		int[][] data = new int[][] { { 1, 1, 1 }, { 0, 0, 1 }, { 0, 0, 2 } };
+		// 使用一个数组保存本次递归是否已经到达此位置
 		boolean[][] marked = new boolean[data.length][data[0].length];
 		List<Pair> res = new ArrayList<>();
 		tDfs(0, 0, 2, data, res, marked);
@@ -122,6 +123,7 @@ public class Q079Exist extends BaseTest
 	 */
 	private void tDfs(int i, int j, int value, int[][] data, List<Pair> res, boolean[][] marked)
 	{
+		// 已经搜索到 value ，可直接结束
 		if (data[i][j] == value)
 		{
 			Pair pair = new Pair();
@@ -133,16 +135,22 @@ public class Q079Exist extends BaseTest
 		}
 		if (data[i][j] == 0)
 		{
+			// 本搜索为顺着1，搜索2。所以一旦遇到0的，肯定就不是合适的值，也是直接返回
 			return;
 		}
 
+		// 走到这里的，即为 data[i][j] ==1 的情况，把坐标记录下来，并标记为已经访问
 		Pair pair = new Pair();
 		pair.l = i;
 		pair.r = j;
 		res.add(pair);
 		marked[i][j] = true;
+
+		// 当前点确认为路径之后，向上下左右各进行一次搜索，
 		for (int k = 0; k < 4; k++)
 		{
+			// 循环上下左右方向的点，进行递归，
+			// 这里的 direction 是个神奇的作用，
 			int ni = i + direction[k][0];
 			int nj = j + direction[k][1];
 			if (inArea(ni, nj, data) && !marked[ni][nj])
