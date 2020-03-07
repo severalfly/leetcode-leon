@@ -14,12 +14,8 @@
 $$\begin{aligned}opt[i] & = a[i] + a[1] + opt[i-1]\end{aligned} \\ 当前+那边过来接+前i-1个$$
 
 二、河这边还剩两个人时，
-$$opt[i] = a[2] + a[i] + a[1] + a[2] + opt[i-1] \\ 过来接+最后两个一起走+a 1/2 一起过去 + 前面i-1个$$
-参考以下图片
+$$opt[i] = a[2] + a[i] + a[1] + a[2] + opt[i-2] \\ 过来接+最后两个一起走+a 1/2 一起过去 + 前面i-2个$$
+参考以下图片  
 ![](暗夜过河-剩余2人时的过河方式.png)
 
-$x^4$
-
-This expression 
-$\sqrt{3x-1}+(1+x)^2$ is an example of a $\LaTeX$ inline equation.he Lorenz Equations:
-$$\begin{aligned}\dot{x} & = \sigma(y-x) \\\\ \dot{y} & = \rho x - y - xz \\\\ \dot{z} & = -\beta z + xy\end{aligned}$$
+那么最后我们可以比较两个方式，取其中较小的，即可。
