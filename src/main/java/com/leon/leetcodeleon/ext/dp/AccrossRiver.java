@@ -10,6 +10,7 @@ public class AccrossRiver
 	public void test()
 	{
 		assert nightReiver(new int[] { 1, 2, 5, 10 }) == 17;
+		System.out.println(nightReiver(new int[] { 1, 2, 5, 10, 22, 23 }));
 	}
 
 	/**
