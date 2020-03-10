@@ -2,16 +2,20 @@ package com.leon.leetcodeleon.q000.q084;
 
 import org.junit.Test;
 
+import java.util.Stack;
+
 public class Q084LargestRectangleArea
 {
 	@Test
 	public void test()
 	{
-		assert largestRectangleArea1(new int[] { 4, 2 }) == 4;
-		assert largestRectangleArea1(new int[] { 2, 1, 5, 6, 2, 3 }) == 10;
-		assert largestRectangleArea1(new int[] { 2 }) == 2;
+		// assert largestRectangleArea1(new int[] { 4, 2 }) == 4;
+		// assert largestRectangleArea1(new int[] { 2, 1, 5, 6, 2, 3 }) == 10;
+		// assert largestRectangleArea1(new int[] { 2 }) == 2;
 		// assert largestRectangleArea2(new int[] { 2, 1, 5, 6, 2, 3 }) == 10;
 		// assert largestRectangleArea2(new int[] { 2 }) == 2;
+		assert largestRectangleArea3(new int[] { 2, 1, 5, 6, 2, 3 }) == 10;
+		assert largestRectangleArea3(new int[] { 2 }) == 2;
 	}
 
 	public int largestRectangleArea(int[] heights)
@@ -97,7 +101,28 @@ public class Q084LargestRectangleArea
 	 */
 	private int largestRectangleArea3(int[] heights)
 	{
-		return 0;
+		if (heights == null || heights.length <= 0)
+		{
+			return 0;
+		}
+		Stack<Integer> stack = new Stack<>();
+		stack.push(-1);
+		int maxArea = Integer.MIN_VALUE;
+		for (int i = 0; i < heights.length; i++)
+		{
+			while (stack.peek() != -1 && heights[stack.peek()] > heights[i])
+			{
+				maxArea = Math.max(maxArea, heights[stack.pop()] * (i - stack.peek() - 1));
+			}
+			stack.push(i);
+		}
+		while (stack.peek() != -1)
+		{
+			maxArea = Math.max(maxArea, heights[stack.pop()] * (heights.length - stack.peek() - 1));
+
+		}
+		System.out.println(maxArea);
+		return maxArea;
 	}
 
 }
