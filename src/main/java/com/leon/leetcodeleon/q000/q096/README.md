@@ -17,4 +17,5 @@
 链接：https://leetcode-cn.com/problems/unique-binary-search-trees
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-$$G(n)=\sum_i^n\left(G(i-1)\dot G(n-i) \right)$$
+可以参考以下公式进行计算
+$$G(n)=\sum_{i=1}^n\left(G(i-1) \cdot G(n-i) \right)$$
