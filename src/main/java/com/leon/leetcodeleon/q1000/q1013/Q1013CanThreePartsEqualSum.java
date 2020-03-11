@@ -1,4 +1,4 @@
-package com.leon.leetcodeleon.q1000.q1100.q1013;
+package com.leon.leetcodeleon.q1000.q1013;
 
 import org.junit.Test;
 
