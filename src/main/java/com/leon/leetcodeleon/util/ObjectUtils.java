@@ -59,6 +59,10 @@ public class ObjectUtils
 			for (int j = 0; j < array[i].length; j++)
 			{
 				System.out.print(array[i][j]);
+				if (array[i][j] == 0)
+				{
+					System.out.print(' ');
+				}
 				System.out.print(' ');
 			}
 			System.out.println();
