@@ -25,6 +25,10 @@ public class AddTwoNumbersV2
 				c = 1;
 				k -= 10;
 			}
+			else
+			{
+				c = 0;
+			}
 			res.next = new ListNode(k);
 			res = res.next;
 			l1 = l1.next;
@@ -38,6 +42,10 @@ public class AddTwoNumbersV2
 				c = 1;
 				k -= 10;
 			}
+			else
+			{
+				c = 0;
+			}
 			res.next = new ListNode(k);
 			res = res.next;
 			l1 = l1.next;
@@ -50,9 +58,17 @@ public class AddTwoNumbersV2
 				c = 1;
 				k -= 10;
 			}
+			else
+			{
+				c = 0;
+			}
 			res.next = new ListNode(k);
 			res = res.next;
 			l2 = l2.next;
+		}
+		if (c > 0)
+		{
+			res.next = new ListNode(1);
 		}
 		return h.next;
 	}
