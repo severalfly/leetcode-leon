@@ -23,19 +23,21 @@ public class Q1160CountCharacters
 		for (String word : words)
 		{
 			int[] d = new int[26];
+			// for (int i = 0; i < word.length(); i++)
+			// {
+			// 	int index = word.charAt(i) - 'a';
+			// 	d[index]++;
+			// }
+			boolean in = true;
 			for (int i = 0; i < word.length(); i++)
 			{
 				int index = word.charAt(i) - 'a';
-				d[index]++;
-			}
-			boolean in = true;
-			for (int i = 0; i < d.length; i++)
-			{
-				if (d[i] > data[i])
+				if (d[index] == data[index])
 				{
 					in = false;
 					break;
 				}
+				d[index]++;
 			}
 			if (in)
 			{
