@@ -19,10 +19,10 @@ public class Q1160CountCharacters
 			data[chars.charAt(i) - 'a']++;
 		}
 		int res = 0;
-		int[] d = new int[26];
+
 		for (String word : words)
 		{
-
+			int[] d = new int[26];
 			for (int i = 0; i < word.length(); i++)
 			{
 				int index = word.charAt(i) - 'a';
@@ -34,9 +34,8 @@ public class Q1160CountCharacters
 				if (d[i] > data[i])
 				{
 					in = false;
-					// break;
+					break;
 				}
-				d[i] = 0;
 			}
 			if (in)
 			{
