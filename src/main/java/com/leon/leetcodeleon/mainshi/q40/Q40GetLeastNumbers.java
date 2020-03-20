@@ -16,6 +16,57 @@ public class Q40GetLeastNumbers
 
 	public int[] getLeastNumbers(int[] arr, int k)
 	{
+		helper(arr, k, 0, arr.length - 1);
+		return Arrays.copyOf(arr, k);
+	}
+
+	public void helper(int[] arr, int k, int s, int e)
+	{
+		if (s >= e)
+		{
+			return;
+		}
+		int patition = partition(arr, s, e);
+		int num = patition - s + 1;
+		if (num == k)
+		{
+			return;
+		}
+		if (num > k)
+		{
+			helper(arr, k, s, patition - 1);
+		}
+		else
+		{
+			helper(arr, k - num, patition + 1, e);
+		}
+	}
+
+	int partition(int[] nums, int l, int r)
+	{
+		int pivot = nums[r];
+		int i = l - 1;
+		for (int j = l; j <= r - 1; ++j)
+		{
+			if (nums[j] <= pivot)
+			{
+				i = i + 1;
+				swap(nums, i, j);
+			}
+		}
+		swap(nums, i + 1, r);
+		return i + 1;
+	}
+
+	private void swap(int[] arr, int i, int j)
+	{
+		int t = arr[i];
+		arr[i] = arr[j];
+		arr[j] = t;
+	}
+
+	public int[] getLeastNumbersV1(int[] arr, int k)
+	{
 		int[] res = new int[k];
 		for (int i = 0; i < k; i++)
 		{
