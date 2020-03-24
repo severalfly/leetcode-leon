@@ -1,4 +1,4 @@
-package com.leon.leetcodeleon.q1300.q1300.q1341;
+package com.leon.leetcodeleon.q1300.q1341;
 
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;

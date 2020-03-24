@@ -1,6 +1,5 @@
-package com.leon.leetcodeleon.q1300.q1300.q1342;
+package com.leon.leetcodeleon.q1300.q1342;
 
-import com.alibaba.fastjson.JSONObject;
 import com.leon.leetcodeleon.common.BaseTest;
 import org.junit.Test;
 
