@@ -2,10 +2,7 @@ package com.leon.leetcodeleon.q800.q820;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Q820MinimumLengthEncoding
 {
@@ -17,7 +14,64 @@ public class Q820MinimumLengthEncoding
 		assert minimumLengthEncoding(new String[] { "time", "ime", "bell", "abell" }) == 11;
 	}
 
+	/**
+	 * 2020-03-28 10:14:05 还未理解此解法的含义～
+	 * @param words
+	 * @return
+	 */
 	public int minimumLengthEncoding(String[] words)
+	{
+		Node trie = new Node();
+		Map<Node, Integer> nodes = new HashMap<>();
+
+		for (int i = 0; i < words.length; ++i)
+		{
+			String word = words[i];
+			Node cur = trie;
+			for (int j = word.length() - 1; j >= 0; --j)
+				cur = cur.get(word.charAt(j));
+			nodes.put(cur, i);
+		}
+
+		int ans = 0;
+		for (Node node : nodes.keySet())
+		{
+			if (node.count == 0)
+				ans += words[nodes.get(node)].length() + 1;
+		}
+		return ans;
+
+	}
+
+	class Node
+	{
+		Node[] children;
+		int count;
+
+		Node()
+		{
+			this.children = new Node[26];
+			this.count = 0;
+		}
+
+		public Node get(char c)
+		{
+			if (this.children[c - 'a'] == null)
+			{
+				this.children[c - 'a'] = new Node();
+				count++;
+			}
+			return this.children[c - 'a'];
+		}
+	}
+
+	/**
+	 * AC 的解法，使用 set 保存已经出现的单词
+	 * 此解法效率极低，生产环境不可使用
+	 * @param words
+	 * @return
+	 */
+	public int minimumLengthEncoding_solution(String[] words)
 	{
 		Set<String> set = new HashSet<>();
 		int res = 0;
