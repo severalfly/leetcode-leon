@@ -5,5 +5,8 @@ leetcode 题目解题思路与代码
 扫码对我赞助
 
 <img src="./zhifubao.jpeg" width = "250" height = "400" alt="图片名称" align=center />
+<br>
 
-<img src="./qrcode_wechat.jpg" width = "43" height = "43" alt="图片名称" align=center />
+关注我了解更多
+=
+<img src="./qrcode_wechat.jpg" width = "86" height = "86" alt="图片名称" align=center />
