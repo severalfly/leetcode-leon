@@ -20,8 +20,36 @@ public class Q113PathSum extends BaseTest
 	public List<List<Integer>> pathSum(TreeNode root, int sum)
 	{
 		List<List<Integer>> res = new ArrayList<>();
-		depth(root, sum, new ArrayList<>(), res);
+		depthV2(root, sum, new ArrayList<>(), res);
 		return res;
+	}
+
+	/**
+	 *
+	 * @param root
+	 * @param sum
+	 * @param res 至当前节点时，已经经过的路径
+	 * @return
+	 */
+	private void depthV2(TreeNode root, int sum, List<Integer> res, List<List<Integer>> r)
+	{
+		if (root == null)
+		{
+			return;
+		}
+		int tmp = sum - root.val;
+		if (tmp == 0 && root.left == null && root.right == null)
+		{
+			ArrayList<Integer> integers = new ArrayList<>(res);
+			integers.add(root.val);
+			r.add(integers);
+			return;
+		}
+		res.add(root.val);
+		depthV2(root.left, tmp, res, r);
+		depthV2(root.right, tmp, res, r);
+		res.remove(res.size() - 1);
+
 	}
 
 	/**
